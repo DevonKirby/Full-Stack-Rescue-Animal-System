@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import DogRoutes from "./routes/DogRoutes.js";
+import MonkeyRoutes from "./routes/MonkeyRoutes.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // Set up routes
 app.use("/api/dogs", DogRoutes);
+app.use("/api/monkeys", MonkeyRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
