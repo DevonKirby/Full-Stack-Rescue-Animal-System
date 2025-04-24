@@ -6,9 +6,9 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for managing th
 
 ## Features 
 
-- Add, update, and delete rescue animals (dogs, monkeys) (WIP)
+- Add, update, and delete rescue animals (dogs, monkeys)
 - Track animal status: trained, reserved, in service (WIP)
-- RESTful API with MongoDB backend (WIP)
+- RESTful API with MongoDB backend
 - React frontend with form handling and dynamic tables (WIP)
 - Built with scalability and modularity in mind 
 
