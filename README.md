@@ -4,7 +4,7 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for managing th
 
 ---
 
-## 📦 Features 
+## Features 
 
 - Add, update, and delete rescue animals (dogs, monkeys) (WIP)
 - Track animal status: trained, reserved, in service (WIP)
@@ -14,7 +14,7 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for managing th
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer     | Tech                      |
 |-----------|---------------------------|
@@ -25,15 +25,15 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for managing th
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
-### 📁 Clone the repo
+### Clone the repo
 ```bash
 git clone https://github.com/DevonKirby/full-stack-rescue-animal-system.git
 cd full-stack-rescue-animal-system
 ```
 
-### 🔧 Install dependencies
+### Install dependencies
 
 Server
 ```bash
@@ -47,7 +47,7 @@ cd ../client
 npm install
 ```
 
-### 🌱 Set up your environment
+### Set up your environment
 
 Create a `.env` file inside the `/server` folder with:
 
