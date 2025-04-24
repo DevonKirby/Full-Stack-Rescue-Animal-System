@@ -3,12 +3,14 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import DogRoutes from "./routes/DogRoutes.js";
 import MonkeyRoutes from "./routes/MonkeyRoutes.js";
+import cors from "cors";
 
 // Load environment variables from .env file
 dotenv.config();
 
 // Set up Express server
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // Set up routes
