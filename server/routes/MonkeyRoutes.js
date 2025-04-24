@@ -40,4 +40,32 @@ router.get('/:name', async (req, res) => {
     }
 });
 
+// PUT /api/monkeys/:name
+// This route updates a specific monkey entry by name in the database.
+router.put('/:name', async (req, res) => {
+    try {
+        const monkey = await Monkey.findOneAndUpdate({ name: req.params.name }, req.body, { new: true });
+        if (!monkey) {
+            return res.status(404).json({ error: 'Monkey not found' });
+        }
+        res.json(monkey);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// DELETE /api/monkeys/:name
+// This route deletes a specific monkey entry by name from the database.
+router.delete('/:name', async (req, res) => {
+    try {
+        const monkey = await Monkey.findOneAndDelete({ name: req.params.name });
+        if (!monkey) {
+            return res.status(404).json({ error: 'Monkey not found' });
+        }
+        res.json({ message: 'Monkey deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 export default router;
