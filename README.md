@@ -18,7 +18,7 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for managing th
 
 | Layer     | Tech                      |
 |-----------|---------------------------|
-| Frontend  | React, JavaScript, Fetch API |
+| Frontend  | React, JavaScript, Axios |
 | Backend   | Node.js, Express.js       |
 | Database  | MongoDB, Mongoose ODM     |
 | Dev Tools | VS Code, Postman, Git, GitHub |
