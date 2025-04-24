@@ -4,13 +4,13 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for managing th
 
 ---
 
-## 📦 Features
+## 📦 Features 
 
-- Add, update, and delete rescue animals (dogs, monkeys)
-- Track animal status: trained, reserved, in service
-- RESTful API with MongoDB backend
-- React frontend with form handling and dynamic tables
-- Built with scalability and modularity in mind
+- Add, update, and delete rescue animals (dogs, monkeys) (WIP)
+- Track animal status: trained, reserved, in service (WIP)
+- RESTful API with MongoDB backend (WIP)
+- React frontend with form handling and dynamic tables (WIP)
+- Built with scalability and modularity in mind 
 
 ---
 
@@ -29,7 +29,7 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for managing th
 
 ### 📁 Clone the repo
 ```bash
-git clone https://github.com/YourUsername/full-stack-rescue-animal-system.git
+git clone https://github.com/DevonKirby/full-stack-rescue-animal-system.git
 cd full-stack-rescue-animal-system
 ```
 
