@@ -1,0 +1,16 @@
+# Node (backend)
+node_modules/
+.env
+*.log
+
+# React (frontend)
+client/node_modules/
+client/build/
+
+# OS-specific
+.DS_store
+Thumbs.db
+
+# IDE-specific
+.vscode/
+.idea/
