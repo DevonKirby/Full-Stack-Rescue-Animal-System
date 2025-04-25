@@ -1,11 +1,12 @@
 import express from 'express';
 import Monkey from '../models/Monkey.js';
+import { authenticateAdmin } from '../middleware/auth.js';
 
 const router = express.Router();
 
 // POST /api/monkeys
 // This route creates a new monkey entry in the database.
-router.post('/', async (req, res) => {
+router.post('/', authenticateAdmin, async (req, res) => {
     try {
         const monkey = new Monkey(req.body);
         const saved = await monkey.save();
@@ -56,7 +57,7 @@ router.put('/:name', async (req, res) => {
 
 // DELETE /api/monkeys/:name
 // This route deletes a specific monkey entry by name from the database.
-router.delete('/:name', async (req, res) => {
+router.delete('/:name', authenticateAdmin, async (req, res) => {
     try {
         const monkey = await Monkey.findOneAndDelete({ name: req.params.name });
         if (!monkey) {

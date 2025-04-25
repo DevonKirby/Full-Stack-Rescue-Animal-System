@@ -1,11 +1,12 @@
 import express from 'express';
 import Dog from '../models/Dog.js';
+import { authenticateAdmin } from '../middleware/auth.js';
 
 const router = express.Router();
 
 // POST /api/dogs
 // This route creates a new dog entry in the database.
-router.post('/', async (req, res) => {
+router.post('/', authenticateAdmin, async (req, res) => {
     try {
         const dog = new Dog(req.body);
         const saved = await dog.save();
@@ -56,7 +57,7 @@ router.put('/:name', async (req, res) => {
 
 // DELETE /api/dogs/:name
 // This route deletes a specific dog entry by name from the database.
-router.delete('/:name', async (req, res) => {
+router.delete('/:name', authenticateAdmin, async (req, res) => {
     try {
         const dog = await Dog.findOneAndDelete({ name: req.params.name });
         if (!dog) {
