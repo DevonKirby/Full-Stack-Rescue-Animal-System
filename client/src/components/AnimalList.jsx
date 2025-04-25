@@ -7,7 +7,7 @@ export default function AnimalList({ animalType }) {
 
     const toggleReservation = async (animalName, currentStatus) => {
         try {
-            const res = await api.put(`/${animalType}/${animalName}`, { reserved: !currentStatus });
+            const res = await api.put(`/${animalType}/${animalName}/reserve`, { reserved: !currentStatus });
     
             // Update local state to reflect change
             setAnimals(prev =>

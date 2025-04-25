@@ -41,6 +41,28 @@ router.get('/:name', async (req, res) => {
     }
 });
 
+// PUT /api/dogs/:name/reserve
+// This route updates the reservation status of a specific monkey entry by name in the database.
+router.put('/:name/reserve', async (req, res) => {
+    if (typeof req.body.reserved !== 'boolean') {
+        return res.status(400).json({ error: 'Invalid reservation status' });
+    }
+
+    try {
+        const monkey = await Monkey.findOneAndUpdate(
+            { name: req.params.name },
+            { reserved: req.body.reserved },
+            { new: true }
+        )
+        if (!monkey) {
+            return res.status(404).json({ error: 'Monkey not found' });
+        }
+        res.json(monkey);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // PUT /api/monkeys/:name
 // This route updates a specific monkey entry by name in the database.
 router.put('/:name', async (req, res) => {
