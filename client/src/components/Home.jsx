@@ -34,6 +34,10 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+            
+            <div className="text-center mt-4">
+                <Link to="/admin" className="btn btn-outline-warning btn-lg">Admin Dashboard</Link>
+            </div>
         </div>
     )
 }
