@@ -5,6 +5,22 @@ import api from '../api.js';
 export default function AnimalList({ animalType }) {
     const [animals, setAnimals] = useState([]);
 
+    const toggleReservation = async (animalName, currentStatus) => {
+        try {
+            const res = await api.put(`/${animalType}/${animalName}`, { reserved: !currentStatus });
+    
+            // Update local state to reflect change
+            setAnimals(prev =>
+                prev.map(animal =>
+                    animal.name === animalName ? { ...animal, reserved: !currentStatus } : animal
+    
+                )
+            );
+        } catch (err) {
+            console.error(`Error toggling reservation for ${animalName}:`, err);
+        }
+    };
+
     useEffect(() => {
         api.get(`/${animalType}`)
             .then((res) => setAnimals(res.data))
@@ -40,10 +56,19 @@ export default function AnimalList({ animalType }) {
                                         Status: {animal.trainingStatus}
                                     </p>
                                 </div>
-                                <div>
+                                <div className="mt-auto d-flex justify-content-between align-items-center">
                                     <span className={`badge ${animal.reserved ? 'bg-danger' : 'bg-success'}`}>
                                         {animal.reserved ? 'Reserved' : 'Available'}
                                     </span>
+
+
+                                    <button
+                                        className={`btn btn-sm ${animal.reserved ? 'btn-outline-danger' : 'btn-outline-light'}`}
+                                        onClick={() => toggleReservation(animal.name, animal.reserved)}
+                                    >
+                                        {animal.reserved ? 'Unreserve' : 'Reserve'}
+                                    </button>
+
                                 </div>
                             </div>
                         </div>
