@@ -9,7 +9,6 @@ export default function ManageAnimals({ animalType }) {
     useEffect(() => {
         const fetchAnimals = async () => {
             try {
-                const token = localStorage.getItem('adminToken');
                 const res = await api.get(`/${animalType}`);
                 setAnimals(res.data);
             } catch (err) {

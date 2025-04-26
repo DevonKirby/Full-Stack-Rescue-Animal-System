@@ -16,6 +16,7 @@ export default function AnimalList({ animalType }) {
     
                 )
             );
+            console.log(res.data.message);
         } catch (err) {
             console.error(`Error toggling reservation for ${animalName}:`, err);
         }
