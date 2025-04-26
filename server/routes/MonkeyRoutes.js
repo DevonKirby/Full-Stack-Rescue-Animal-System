@@ -67,7 +67,9 @@ router.put('/:name/reserve', async (req, res) => {
 // This route updates a specific monkey entry by name in the database.
 router.put('/:name', async (req, res) => {
     try {
-        const monkey = await Monkey.findOneAndUpdate({ name: req.params.name }, req.body, { new: true });
+        const monkey = await Monkey.findOneAndUpdate({ name: req.params.name },
+            req.body,
+            { new: true, runValidators: true });
         if (!monkey) {
             return res.status(404).json({ error: 'Monkey not found' });
         }

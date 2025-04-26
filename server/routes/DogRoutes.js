@@ -67,7 +67,9 @@ router.put('/:name/reserve', async (req, res) => {
 // This route updates a specific dog entry by name in the database.
 router.put('/:name', authenticateAdmin, async (req, res) => {
     try {
-        const dog = await Dog.findOneAndUpdate({ name: req.params.name }, req.body, { new: true });
+        const dog = await Dog.findOneAndUpdate({ name: req.params.name },
+            req.body,
+            { new: true, runValidators: true });
         if (!dog) {
             return res.status(404).json({ error: 'Dog not found' });
         }

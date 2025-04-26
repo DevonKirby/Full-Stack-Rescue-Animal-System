@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import api from '../api.js';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import EditAnimalModal from './EditAnimalModal.jsx';
 
 export default function ManageAnimals({ animalType }) {
     const [animals, setAnimals] = useState([]);
     const [error, setError] = useState(null);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [selectedAnimal, setSelectedAnimal] = useState(null);
 
     useEffect(() => {
         const fetchAnimals = async () => {
@@ -19,6 +23,27 @@ export default function ManageAnimals({ animalType }) {
 
         fetchAnimals();
     }, [animalType]);
+
+    const handleDelete = async (animalName) => {
+        if (!window.confirm(`Are you sure you want to delete ${animalName}?`)) {
+            return;
+        }
+
+        try {
+            await api.delete(`/${animalType}/${animalName}`);
+            toast.success(`Deleted ${animalName}`);
+
+            setAnimals(prev => prev.filter(a => a.name !== animalName));
+        } catch (error) {
+            console.error(`Error deleting ${animalName}:`, error);
+            toast.error(`Failed to delete ${animalName}`);
+        }
+    };
+
+    const handleEdit = (animal) => {
+        setSelectedAnimal(animal);
+        setShowEditModal(true);
+    };
 
     return (
         <div className="container mt-5 text-light">
@@ -55,15 +80,38 @@ export default function ManageAnimals({ animalType }) {
                                         {animal.reserved ? 'Reserved' : 'Available'}
                                     </span>
 
-
-                                    
-
+                                    <div className="btn-group w-50">
+                                        <button
+                                            className="btn btn-sm btn-outline-warning w-50"
+                                            onClick={() => handleEdit(animal)}
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
+                                            className="btn btn-sm btn-outline-danger w-50"
+                                            onClick={() => handleDelete(animal.name)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
+
+            <EditAnimalModal
+                show={showEditModal}
+                handleClose={() => setShowEditModal(false)}
+                animal={selectedAnimal}
+                animalType={animalType}
+                refreshAnimals={() => {
+                    api.get(`/${animalType}`)
+                        .then(res => setAnimals(res.data))
+                        .catch(err => setError(`Error fetching ${animalType}: ${err.message}`));  
+                }}
+            />
         </div>
     );
 }
