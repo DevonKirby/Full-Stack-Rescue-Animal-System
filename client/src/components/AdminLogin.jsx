@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api.js';
+import { AuthContext } from '../context/AuthContext.jsx';
 
 export default function AdminLogin() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const { login } = React.useContext(AuthContext);
 
     const handleLogin = async () => {
         try {
@@ -15,7 +17,7 @@ export default function AdminLogin() {
                 password,
             });
 
-            localStorage.setItem('adminToken', res.data.token);
+            login(res.data.token);
             navigate('/admin');
         } catch (err) {
             setError('Login failed. Please check your credentials.');

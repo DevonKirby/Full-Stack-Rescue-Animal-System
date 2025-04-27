@@ -1,8 +1,9 @@
 import React from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext.jsx';
 
 export default function ProtectedRoute({ children }) {
-    const token = localStorage.getItem('adminToken');
+    const { isAuthenticated } = React.useContext(AuthContext);
 
-    return token ? <Outlet /> : <Navigate to="/admin-login" />;
+    return isAuthenticated ? <Outlet /> : <Navigate to="/admin-login" replace />;
 }
